@@ -1,0 +1,39 @@
+# ===================== Keil MDK 编译产物 =====================
+# Output/ 里除了散列文件（Keil 会自动生成）之外全是编译产物，整目录忽略
+Output/*
+!Output/YH-F407.sct
+Listings/
+Project/DebugConfig/
+DebugConfig/
+
+*.o
+*.crf
+*.d
+*.dep
+*.lnp
+*.axf
+*.elf
+*.map
+*.hex
+*.bin
+*.lst
+*.htm
+*.bak
+*.tmp
+
+# Keil 用户自己的窗口布局 / 断点 / 上次打开的文件（每人不同）
+*.uvguix.*
+*.uvopt
+*.uvoptx
+
+# 编译日志（build_*.log 等）
+*.log
+*.log.lock
+
+# 之前误在 Project/ 里执行 git init 留下的空仓库，已改名备份
+Project/.git_unused*/
+
+# ===================== 系统 / 编辑器垃圾 =====================
+Thumbs.db
+desktop.ini
+.DS_Store
