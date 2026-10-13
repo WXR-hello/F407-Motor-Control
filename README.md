@@ -98,7 +98,7 @@ f407测试版/
 │   ├─ key/bsp_exti.c        例程遗留的 EXTI 按键（当前用轮询，未使用）
 │   └─ stm32f4xx_it.c        中断入口（TIM8_CC_IRQHandler 在这里）
 ├─ Libraries/               CMSIS + STM32F4xx HAL 库
-├─ Doc/                     接线图 + 原例程说明
+├─ Doc/                     接线图 + 工程说明（readme.txt）
 ├─ Output/                  Keil 输出（仓库里只保留散列文件 YH-F407.sct）
 └─ Listings/                Keil 编译清单（产物）
 ```
@@ -227,6 +227,6 @@ XPT2046 用普通 IO 模拟 SPI（不占硬件 SPI）。校准数据存在 Flash
 | --- | --- |
 | `Libraries/`（STM32F4xx HAL + CMSIS） | STMicroelectronics，BSD-3-Clause |
 | `User/lcd/` 的屏幕与触摸驱动 | 基于野火 F407 骄阳官方 LCD/触摸例程修改 |
-| `User/stepper/` | 基于野火官方"步进电机-梯形加减速"例程修改（原说明见 `Doc/readme.txt`） |
+| `User/stepper/` | 基于野火官方"步进电机-梯形加减速"例程修改（工程说明见 `Doc/readme.txt`） |
 | `User/delay/core_delay.c` | 野火 core_delay（DWT 延时） |
 | 其余应用代码（`main.c`、`bsp_ui.c`、按键/界面整合、双操作逻辑等） | 本项目作者 |
