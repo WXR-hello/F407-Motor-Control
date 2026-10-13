@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="620" viewBox="0 0 1040 620"
+     font-family="Segoe UI, Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif">
+  <rect x="0" y="0" width="1040" height="620" fill="#fbfcfd"/>
+  <text x="40" y="46" font-size="23" font-weight="700" fill="#263238">梯形加减速：一段距离是怎么走完的</text>
+  <text x="40" y="72" font-size="14" fill="#607d8b">左：速度曲线（加速 → 匀速 → 减速）；右：脉冲中断里的状态机</text>
+  <line x1="40" y1="86" x2="1000" y2="86" stroke="#cfd8dc" stroke-width="1.5"/>
+
+  <defs>
+    <marker id="ar4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#546e7a"/>
+    </marker>
+  </defs>
+
+  <!-- ================= 左：速度曲线 ================= -->
+  <text x="80" y="122" font-size="13.5" font-weight="700" fill="#37474f">速度</text>
+  <line x1="80" y1="132" x2="80" y2="390" stroke="#90a4ae" stroke-width="1.6"/>
+  <line x1="80" y1="390" x2="540" y2="390" stroke="#90a4ae" stroke-width="1.6"/>
+  <text x="500" y="414" font-size="13.5" font-weight="700" fill="#37474f">步数 / 时间</text>
+
+  <line x1="80" y1="160" x2="500" y2="160" stroke="#cfd8dc" stroke-width="1.2" stroke-dasharray="5 4"/>
+  <text x="86" y="152" font-size="11.5" fill="#78909c">最高速（min_delay）</text>
+
+  <polyline points="80,390 200,160 370,160 490,390" fill="none" stroke="#1565c0" stroke-width="3"/>
+  <line x1="200" y1="160" x2="200" y2="390" stroke="#b0bec5" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <line x1="370" y1="160" x2="370" y2="390" stroke="#b0bec5" stroke-width="1.2" stroke-dasharray="4 4"/>
+
+  <rect x="120" y="255" width="60" height="24" rx="6" fill="#e3f2fd"/>
+  <text x="132" y="272" font-size="12.5" fill="#0d47a1">加速</text>
+  <rect x="258" y="205" width="60" height="24" rx="6" fill="#e8f5e9"/>
+  <text x="270" y="222" font-size="12.5" fill="#1b5e20">匀速</text>
+  <rect x="400" y="255" width="60" height="24" rx="6" fill="#fff3e0"/>
+  <text x="412" y="272" font-size="12.5" fill="#e65100">减速</text>
+
+  <text x="196" y="440" font-size="12" fill="#546e7a">加速结束：accel_count 用完</text>
+  <text x="352" y="460" font-size="12" fill="#546e7a">减速起点：decel_start</text>
+
+  <!-- ================= 右：状态机 ================= -->
+  <text x="580" y="122" font-size="13.5" font-weight="700" fill="#37474f">脉冲中断里的四个状态</text>
+  <g stroke="#6a1b9a" stroke-width="1.6">
+    <rect x="600" y="140" width="170" height="52" rx="9" fill="#f3e5f5"/>
+    <rect x="810" y="140" width="170" height="52" rx="9" fill="#f3e5f5"/>
+    <rect x="810" y="290" width="170" height="52" rx="9" fill="#f3e5f5"/>
+    <rect x="600" y="290" width="170" height="52" rx="9" fill="#f3e5f5"/>
+  </g>
+  <g font-size="14" font-weight="700" fill="#4a148c" text-anchor="middle">
+    <text x="685" y="172">ACCEL 加速</text>
+    <text x="895" y="172">RUN 匀速</text>
+    <text x="895" y="322">DECEL 减速</text>
+    <text x="685" y="322">STOP 停止</text>
+  </g>
+  <g stroke="#546e7a" stroke-width="1.8" marker-end="url(#ar4)" fill="none">
+    <line x1="774" y1="166" x2="806" y2="166"/>
+    <line x1="895" y1="196" x2="895" y2="286"/>
+    <line x1="806" y1="316" x2="774" y2="316"/>
+    <line x1="685" y1="286" x2="685" y2="196"/>
+  </g>
+  <g font-size="11.5" fill="#37474f">
+    <text x="778" y="160" text-anchor="middle">到目标速度</text>
+    <text x="902" y="244">剩余步数够减速</text>
+    <text x="790" y="310" text-anchor="middle">走完</text>
+    <text x="692" y="244">下次动作</text>
+  </g>
+  <text x="580" y="374" font-size="12.5" fill="#455a64">每发一个脉冲调一次 speed_decision_axis()，</text>
+  <text x="580" y="394" font-size="12.5" fill="#455a64">算出的周期写进 TIM8 比较寄存器，决定下一个脉冲什么时候来。</text>
+
+  <!-- ================= 备注 ================= -->
+  <rect x="40" y="470" width="960" height="130" rx="8" fill="#fffde7" stroke="#fbc02d" stroke-width="1.3"/>
+  <text x="56" y="494" font-size="13" fill="#795548">
+    1. TIM8 挂在 APB2（168 MHz），分频 TIM_PRESCALER = 28 → 计数频率 6 MHz，和速度公式里的 T1_FREQ 完全一致
+  </text>
+  <text x="56" y="516" font-size="13" fill="#795548">
+    2. MIN_DELAY_LIMIT = 120：脉冲周期下限 120 拍（20 µs，约 50 kpps），速度参数填太大也不会发出超出电机能力的脉冲
+  </text>
+  <text x="56" y="538" font-size="13" fill="#795548">
+    3. HALF_DELAY_MAX = 60000：比较寄存器只有 16 位，半周期超过 65535 会被硬件截断，这里把上限卡住
+  </text>
+  <text x="56" y="560" font-size="13" fill="#795548">
+    4. 换丝杠或皮带：改 main.c 的 Screw_Lead12 / Screw_Lead34（电机转一圈机构走多少 mm），其它不用动
+  </text>
+  <text x="56" y="582" font-size="13" fill="#795548">
+    5. 一个脉冲 = 一个细分步：200 步/圈 × 32 细分 = 6400 脉冲/圈（驱动器拨码必须也是 32 细分）
+  </text>
+</svg>

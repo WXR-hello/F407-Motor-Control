@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="780" viewBox="0 0 900 780"
+     font-family="Segoe UI, Microsoft YaHei, PingFang SC, Noto Sans CJK SC, sans-serif">
+  <rect x="0" y="0" width="900" height="780" fill="#fbfcfd"/>
+  <text x="40" y="46" font-size="23" font-weight="700" fill="#263238">屏幕界面（以 240×320 的 3.2 寸电阻屏为例）</text>
+  <text x="40" y="72" font-size="14" fill="#607d8b">屏幕上的 5 个按钮和 5 个物理按键一一对应，功能完全等价</text>
+  <line x1="40" y1="86" x2="860" y2="86" stroke="#cfd8dc" stroke-width="1.5"/>
+
+  <!-- ================= 屏幕示意 ================= -->
+  <rect x="62" y="142" width="424" height="560" rx="16" fill="#263238"/>
+  <rect x="70" y="150" width="408" height="544" fill="#000000"/>
+
+  <text x="274" y="199" font-size="27" font-weight="700" fill="#00ffff" text-anchor="middle"
+        font-family="Consolas, monospace">STEPPER MOTOR</text>
+  <text x="274" y="250" font-size="27" fill="#ffffff" text-anchor="middle"
+        font-family="Consolas, monospace">DIST TO MOVE</text>
+  <text x="274" y="326" font-size="58" font-weight="700" fill="#ffff00" text-anchor="middle"
+        font-family="Consolas, monospace">10.0 cm</text>
+  <text x="274" y="379" font-size="27" fill="#ffff00" text-anchor="middle"
+        font-family="Consolas, monospace">STEP : 10cm</text>
+  <text x="274" y="427" font-size="27" fill="#00ff00" text-anchor="middle"
+        font-family="Consolas, monospace">MODE : 1 &amp; 2</text>
+  <text x="274" y="471" font-size="27" fill="#ffffff" text-anchor="middle"
+        font-family="Consolas, monospace">STATE : READY</text>
+  <text x="274" y="515" font-size="27" fill="#00bfff" text-anchor="middle"
+        font-family="Consolas, monospace">PULSE : 0</text>
+
+  <rect x="77" y="534" width="127" height="78" rx="6" fill="#4208"/>
+  <rect x="210" y="534" width="127" height="78" rx="6" fill="#4208"/>
+  <rect x="344" y="534" width="127" height="78" rx="6" fill="#4208"/>
+  <g font-size="26" fill="#ffffff" text-anchor="middle" font-family="Consolas, monospace">
+    <text x="140" y="583">10cm</text>
+    <text x="273" y="583">-</text>
+    <text x="407" y="583">+</text>
+  </g>
+  <rect x="77" y="619" width="194" height="68" rx="6" fill="#4208"/>
+  <rect x="277" y="619" width="194" height="68" rx="6" fill="#4208"/>
+  <g font-size="26" fill="#ffffff" text-anchor="middle" font-family="Consolas, monospace">
+    <text x="174" y="662">MODE</text>
+    <text x="374" y="662">RUN</text>
+  </g>
+
+  <!-- 标注引出线 -->
+  <g stroke="#90a4ae" stroke-width="1.2">
+    <line x1="478" y1="326" x2="516" y2="326"/>
+    <line x1="478" y1="471" x2="516" y2="471"/>
+    <line x1="478" y1="573" x2="516" y2="573"/>
+    <line x1="478" y1="653" x2="516" y2="653"/>
+  </g>
+
+  <!-- ================= 说明 ================= -->
+  <g font-size="14">
+    <text x="522" y="176" font-weight="700" fill="#263238">屏幕上有什么</text>
+
+    <text x="522" y="212" font-weight="700" fill="#0d47a1">STEPPER MOTOR / DIST TO MOVE</text>
+    <text x="522" y="232" fill="#546e7a" font-size="13">固定标题（青色）+ 提示行（白色）</text>
+
+    <text x="522" y="264" font-weight="700" fill="#8d6e00">黄色大数字 = 要走的距离</text>
+    <text x="522" y="284" fill="#546e7a" font-size="13">按当前单位显示：10cm/1cm 档是 cm 保留 1 位</text>
+    <text x="522" y="302" fill="#546e7a" font-size="13">小数，1mm 档是整数 mm；负数就是反方向</text>
+
+    <text x="522" y="352" font-weight="700" fill="#1b5e20">STEP : 10cm ｜ MODE : 1 &amp; 2</text>
+    <text x="522" y="372" fill="#546e7a" font-size="13">当前单位档（KEY3 循环切换 10cm → 1cm → 1mm）</text>
+    <text x="522" y="390" fill="#546e7a" font-size="13">当前控制的电机组：MODE : 1 &amp; 2 或 3 &amp; 4</text>
+
+    <text x="522" y="436" font-weight="700" fill="#37474f">STATE : READY / RUNNING</text>
+    <text x="522" y="456" fill="#546e7a" font-size="13">运动中是红色 RUNNING，静止是白色 READY</text>
+
+    <text x="522" y="497" font-weight="700" fill="#01579b">PULSE : 0</text>
+    <text x="522" y="517" fill="#546e7a" font-size="13">上一趟实际发出的脉冲数（运动时约 200 ms 刷一次）</text>
+
+    <text x="522" y="553" font-weight="700" fill="#263238">第一行按钮：UNIT ｜ − ｜ +</text>
+    <text x="522" y="573" fill="#546e7a" font-size="13">UNIT 按钮上直接显示当前单位；−/+ 按当前单位减/加</text>
+
+    <text x="522" y="633" font-weight="700" fill="#263238">第二行按钮：MODE ｜ RUN</text>
+    <text x="522" y="653" fill="#546e7a" font-size="13">MODE 切组，RUN 让当前组走一次</text>
+    <text x="522" y="671" fill="#546e7a" font-size="13">按下时按钮变绿闪一下再执行（触摸反馈）</text>
+  </g>
+
+  <!-- ================= 备注 ================= -->
+  <rect x="40" y="716" width="820" height="48" rx="8" fill="#fffde7" stroke="#fbc02d" stroke-width="1.3"/>
+  <text x="56" y="736" font-size="13" fill="#795548">
+    上电先自检：屏幕依次刷白/红/绿/蓝确认显示通路；认不到面板 ID 时两个 LED 交替闪。
+  </text>
+  <text x="56" y="756" font-size="13" fill="#795548">
+    换到 480×800 的大屏时界面会自动切到宽松排版，不用改代码。
+  </text>
+</svg>
